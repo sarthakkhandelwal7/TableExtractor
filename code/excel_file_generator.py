@@ -22,6 +22,6 @@ def lambda_handler(event, context):
             'Access-Control-Allow-Methods': '*',
             'Content-Type': "application/json"
         }
-    responseObj["body"] = json.dumps("https://extracted-tables.s3.ap-south-1.amazonaws.com/"+file_name)
+    responseObj["body"] = json.dumps(file_name)
 
     return responseObj
