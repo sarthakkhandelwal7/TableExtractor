@@ -15,7 +15,7 @@
     <input id="text2" placeholder="Enter table number">
     <button onclick="get_excel_format()">submit</button><br>
     <br><br>
-    <button onclick="Download()">Download</button><br>
+    <a href="#">Download</a>
 	<br><br>
 <script >
     var file_name = '';
@@ -36,24 +36,17 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200) {
-                var link = this.responseText;
-                console.log(link);
-                document.getElementById('text2').innerHTML = link;
-                file_name = link;
-                console.log(file_name);
+                var name = this.responseText;
+                for(var i = 0; i < 2; i++){
+                    name = name.replace("\"", "");
+                }                
+                document.getElementsByTagName("a")[0].setAttribute("href", "https://extracted-tables.s3.ap-south-1.amazonaws.com/"+name);
             }
         };
         var number = String(document.getElementById("text2").value);
         var url = String(document.getElementById('text1').value);
         xhttp.open("GET", "https://5qkn72nq7a.execute-api.ap-south-1.amazonaws.com/prod/generate_excel_sheet?number="+number+"&"+"url="+url, true);
         xhttp.send();
-    }
-    function Download(){
-        var link = document.createElement('a');
-        link.href = file_name;
-        console.log(link.href);
-        document.body.appendChild(link);
-        link.click();
     }
 </script>
 </body>
