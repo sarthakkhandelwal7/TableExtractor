@@ -9,8 +9,7 @@
 <body>
 	<br><br>
 	<input id="text1" placeholder="Enter URL">
-	<br><br>
-	<button onclick="get_table_count()">submit</button><br>
+    <button onclick="get_table_count()">submit</button><br>
     <h1><span id="ans"></span></h1>
     <input id="text2" placeholder="Enter table number">
     <button onclick="get_excel_format()">submit</button><br>
@@ -21,6 +20,7 @@
     var file_name = '';
 	function get_table_count() 
 	{
+        document.getElementById('ans').textContent = "Please Wait!"
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
